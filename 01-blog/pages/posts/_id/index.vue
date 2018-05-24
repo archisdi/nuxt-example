@@ -1,18 +1,40 @@
 <template>
   <div class="single-post-page">
       <section class="post">
-          <h1 class="post-title">Title of the post</h1>
+          <h1 class="post-title">{{ post.title }}</h1>
           <div class="post-details">
-              <div class="post-detail">Last updated on ---</div>
-              <div class="post-detail">Written by Name</div>
+              <div class="post-detail">Last updated on {{ post.updatedDate }}</div>
+              <div class="post-detail">Written by {{ post.author }}</div>
           </div>
-          <p>Content of the post</p>
+          <p>{{ post.content }}</p>
       </section>
       <section class="post-feedback">
           <p>Give Feedback to <a href="mailto:archisdiningrat@gmail.com">archisdiningrat@gmail.com</a></p>
       </section>
   </div>
 </template>
+
+<script>
+export default {
+  asyncData(context, callback) {
+    setTimeout(() => {
+      callback(null, {
+        post: {
+          id: context.params.id,
+          title: `First post ID ${context.params.id}`,
+          author: "archie isdiningrat",
+          previewText: "this is our first post",
+          updatedDate: new Date(),
+          content: "a primary content of a post",
+          thumbnail:
+            "https://images.tech.co/wp-content/uploads/2015/08/techco-web.png"
+        }
+      });
+    }, 1000);
+  }
+};
+</script>
+
 
 <style scoped>
 .single-post-page {

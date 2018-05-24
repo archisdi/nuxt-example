@@ -4,20 +4,51 @@
       <h1>Get the latest tech news</h1>
     </section>
 
-    <section class="featured-posts">
-      <post-preview id="1" thumbnail="https://images.tech.co/wp-content/uploads/2015/08/techco-web.png" title="Hola Amigos" previewText="this is preview text"></post-preview>
-      <post-preview id="2" thumbnail="https://images.tech.co/wp-content/uploads/2015/08/techco-web.png" title="Hola Amigos" previewText="this is preview text"></post-preview>
-      <post-preview id="3" thumbnail="https://images.tech.co/wp-content/uploads/2015/08/techco-web.png" title="Hola Amigos" previewText="this is preview text"></post-preview>
-    </section>
+  <post-list :posts="posts"></post-list>
   </div>
 </template>
 
 <script>
-import PostPreview from '@/components/Posts/PostPreview';
+import PostList from "@/components/Posts/PostList";
 export default {
-  components:{
-    PostPreview
-  }
+  // data() {
+  //   return {
+  //     posts: []
+  //   };
+  // },
+  asyncData(context, callback) {
+    setTimeout(() => {
+      callback(null, {
+        posts: [
+          {
+            id: 1,
+            title: "First post",
+            previewText: "this is our first post",
+            thumbnail:
+              "https://images.tech.co/wp-content/uploads/2015/08/techco-web.png"
+          },
+          {
+            id: 2,
+            title: "Second post",
+            previewText: "this is our second post",
+            thumbnail:
+              "https://images.tech.co/wp-content/uploads/2015/08/techco-web.png"
+          },
+          {
+            id: 3,
+            title: "First third",
+            previewText: "this is our third post",
+            thumbnail:
+              "https://images.tech.co/wp-content/uploads/2015/08/techco-web.png"
+          }
+        ]
+      });
+    }, 1500);
+  },
+  components: {
+    PostList
+  },
+  created() {}
 };
 </script>
 
@@ -28,7 +59,7 @@ export default {
   position: relative;
   padding: 30px;
   box-sizing: border-box;
-  background-image: url('~assets/images/main-page-background.jpg');
+  background-image: url("~assets/images/main-page-background.jpg");
   background-position: center;
   background-size: cover;
 }

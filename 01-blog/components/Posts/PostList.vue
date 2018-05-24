@@ -1,8 +1,6 @@
 <template>
-      <div class="post-list">
-      <post-preview :is-admin="isAdmin" id="1" thumbnail="https://images.tech.co/wp-content/uploads/2015/08/techco-web.png" title="Hola Amigos" previewText="this is preview text"></post-preview>
-      <post-preview :is-admin="isAdmin" id="2" thumbnail="https://images.tech.co/wp-content/uploads/2015/08/techco-web.png" title="Hola Amigos" previewText="this is preview text"></post-preview>
-      <post-preview :is-admin="isAdmin" id="3" thumbnail="https://images.tech.co/wp-content/uploads/2015/08/techco-web.png" title="Hola Amigos" previewText="this is preview text"></post-preview>
+  <div class="post-list">
+      <post-preview v-for="post in posts" :key="post.id" :is-admin="isAdmin" :id="post.id" :thumbnail="post.thumbnail" :title="post.title" :previewText="post.previewText"></post-preview>
   </div>
 </template>
 
@@ -16,6 +14,10 @@ export default {
     isAdmin: {
       type: Boolean,
       default: false
+    },
+    posts:{
+      type: Array,
+      required: true
     }
   }
 };
